@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:mim="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2" targetNamespace="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<annotation>
+		<documentation xml:lang="en">XML schema defined by the Multilateral Interoperability Programme (MIP) - Editor: Dr. Michael Gerz, michael.gerz@fkie.fraunhofer.de, Fraunhofer FKIE, Germany</documentation>
+	</annotation>
+	<simpleType name="ObstacleReportIdentifier">
+		<annotation>
+			<documentation xml:lang="en">The identifier of the report.</documentation>
+		</annotation>
+		<restriction base="token"/>
+	</simpleType>
+	<simpleType name="ObjectIdentifier">
+		<annotation>
+			<documentation xml:lang="en">The identifier of the object</documentation>
+		</annotation>
+		<restriction base="token"/>
+	</simpleType>
+	<simpleType name="AffiliationFunctionalGroupName">
+		<annotation>
+			<documentation xml:lang="en">The name of the AffiliationFunctionalGroup.</documentation>
+		</annotation>
+		<restriction base="token">
+			<maxLength value="50"/>
+			<minLength value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SymbologySymbolAnnotationText">
+		<annotation>
+			<documentation xml:lang="en">The annotation to be shown attached to the representation of an Action or Object in the form of a graphical depiction in accordance with symbology standard conventions.</documentation>
+		</annotation>
+		<restriction base="string">
+			<maxLength value="20"/>
+			<minLength value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ObstacleIdentifier">
+		<annotation>
+			<documentation xml:lang="en">The identification of the Obstacle.</documentation>
+			<appinfo>
+				<externalSource>STANAG 2430</externalSource>
+				<externalSourceAgency>NATO</externalSourceAgency>
+				<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+			</appinfo>
+		</annotation>
+		<restriction base="token"/>
+	</simpleType>
+	<simpleType name="ObstacleIsCbrnthreat">
+		<annotation>
+			<documentation xml:lang="en">Whether the Obstacle is considered a CBRN threat (true) or not (false).</documentation>
+			<appinfo>
+				<externalSource>STANAG 1059</externalSource>
+				<externalSourceAgency>NATO</externalSourceAgency>
+				<externalSourceVersion>Edition 9 19 February 2004</externalSourceVersion>
+			</appinfo>
+		</annotation>
+		<restriction base="boolean"/>
+	</simpleType>
+	<simpleType name="ObstacleIsManMade">
+		<annotation>
+			<documentation xml:lang="en">Whether the Obstacle is man made (true) or not (false).</documentation>
+			<appinfo>
+				<externalSource>STANAG 1059</externalSource>
+				<externalSourceAgency>NATO</externalSourceAgency>
+				<externalSourceVersion>Edition 9 19 February 2004</externalSourceVersion>
+			</appinfo>
+		</annotation>
+		<restriction base="boolean"/>
+	</simpleType>
+	<simpleType name="ObstacleObservationText">
+		<annotation>
+			<documentation xml:lang="en">observationText</documentation>
+			<appinfo>
+				<externalSource>STANAG 2430</externalSource>
+				<externalSourceAgency>NATO</externalSourceAgency>
+				<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+			</appinfo>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="VisibilityRangeDimension">
+		<annotation>
+			<documentation xml:lang="en">The distance which can be surveyed using visual observation for a Visibility.</documentation>
+			<appinfo>
+				<externalSource>MIP-NDAG</externalSource>
+				<unit>metre</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="3"/>
+			<maxInclusive value="999999999.999"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="CorridorAreaWidthDimension">
+		<annotation>
+			<documentation xml:lang="en">The horizontal distance measured from side to side for a CorridorArea and distributed equally with respect to its centreline.</documentation>
+			<appinfo>
+				<externalSource>MIP-NDAG</externalSource>
+				<unit>metre</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="3"/>
+			<maxInclusive value="999999999.999"/>
+			<minExclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FanAreaMinimumRangeDimension">
+		<annotation>
+			<documentation xml:lang="en">The distance from the vertex to the inner ring of the ring sector used to specify the FanArea.</documentation>
+			<appinfo>
+				<externalSource>MIP-NDAG</externalSource>
+				<unit>metre</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="3"/>
+			<maxInclusive value="999999999.999"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FanAreaOrientationAngle">
+		<annotation>
+			<documentation xml:lang="en">The rotational measurement clockwise between the line of true north and the left side of the sector for a FanArea.</documentation>
+			<appinfo>
+				<externalSource>MIP-NDAG</externalSource>
+				<unit>degree</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="4"/>
+			<maxExclusive value="360"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="FanAreaSectorSizeAngle">
+		<annotation>
+			<documentation xml:lang="en">The rotational measurement clockwise between the left and right sides of the sector for a FanArea.</documentation>
+			<appinfo>
+				<externalSource>MIP-NDAG</externalSource>
+				<unit>degree</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="4"/>
+			<maxExclusive value="360"/>
+			<minInclusive value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="GeographicPointLatitudeCoordinate">
+		<annotation>
+			<documentation xml:lang="en">The angle between the plane of the equator and a line perpendicular to the ellipsoid surface and passing through the GeographicPoint.</documentation>
+			<appinfo>
+				<externalSource>ATCCIS</externalSource>
+				<unit>degree</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="6"/>
+			<maxInclusive value="90"/>
+			<minInclusive value="-90"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="GeographicPointLongitudeCoordinate">
+		<annotation>
+			<documentation xml:lang="en">The angle between the initial (zero or Greenwich) meridian and the meridian of the GeographicPoint measured in the plane of the Equator.</documentation>
+			<appinfo>
+				<externalSource>ATCCIS</externalSource>
+				<unit>degree</unit>
+			</appinfo>
+		</annotation>
+		<restriction base="decimal">
+			<fractionDigits value="6"/>
+			<maxInclusive value="180"/>
+			<minInclusive value="-180"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="LandMineIsLethalIndicator">
+		<annotation>
+			<documentation xml:lang="en">Whether the LandMine is lethal (true) or not (false).</documentation>
+			<appinfo>
+				<externalSource>STANAG 2430</externalSource>
+				<externalSourceAgency>NATO</externalSourceAgency>
+				<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+			</appinfo>
+		</annotation>
+		<restriction base="boolean"/>
+	</simpleType>
+	<simpleType name="ReportingDataReportingDateTime">
+		<annotation>
+			<documentation xml:lang="en">The point in time at which the information referenced by the ReportingData is provided.</documentation>
+		</annotation>
+		<restriction base="dateTime"/>
+	</simpleType>
+	<simpleType name="ObjectIsDecoyIndicator">
+		<annotation>
+			<documentation xml:lang="en">Whether the Object acts as a decoy (true) or not (false).</documentation>
+			<appinfo>
+				<externalSource>MIP</externalSource>
+			</appinfo>
+		</annotation>
+		<restriction base="boolean"/>
+	</simpleType>
+	<simpleType name="ObjectName">
+		<annotation>
+			<documentation xml:lang="en">The name of the Object.</documentation>
+		</annotation>
+		<restriction base="token">
+			<maxLength value="100"/>
+			<minLength value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ObjectTypeName">
+		<annotation>
+			<documentation xml:lang="en">The type name of the Object.</documentation>
+		</annotation>
+		<restriction base="token">
+			<maxLength value="100"/>
+			<minLength value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UnitFormalAbbreviatedName">
+		<annotation>
+			<documentation xml:lang="en">The common formal abbreviation used to designate a Unit.</documentation>
+		</annotation>
+		<restriction base="token">
+			<maxLength value="100"/>
+			<minLength value="0"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UnitHasCommandFunctionIndicator">
+		<annotation>
+			<documentation xml:lang="en">Whether the Organisation has a command function (true) or not (false).</documentation>
+			<appinfo>
+				<externalSource>MIP</externalSource>
+			</appinfo>
+		</annotation>
+		<restriction base="boolean"/>
+	</simpleType>
+</schema>

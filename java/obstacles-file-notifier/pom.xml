@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>ch.cheafcso.mip.ipt4</groupId>
+		<artifactId>obstacles-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>obstacles-file-notifier</artifactId>
+	<packaging>jar</packaging>
+	<description>Camel based file notifier</description>
+
+	<properties>
+    <camel.version>2.11.0</camel.version>
+    <cxf.version>2.7.4</cxf.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- run via 'mvn camel:run' -->
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-maven-plugin</artifactId>
+				<version>${camel.version}</version>
+			</plugin>
+
+			<!-- run via 'mvn compile exec:java' -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>ch.cheafcso.mip.ipt4.obstacle_file_notifier.Main</mainClass>
+					<includePluginDependencies>false</includePluginDependencies>
+				</configuration>
+			</plugin>
+			<!-- Compile xsd into java classes -->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.8.3</version>
+				<executions>
+					<execution>
+						<id>process-xsd</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<schemaIncludes>
+								<include>schemas/*.xsd</include>
+							</schemaIncludes>
+							<bindingIncludes>
+								<include>schemas/*.xjb</include>
+							</bindingIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/main/java</generateDirectory>
+							<extension>true</extension>
+							<args>
+								<arg>-Xannotate</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics-annotate</artifactId>
+									<version>0.6.3</version>
+								</plugin>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics</artifactId>
+									<version>0.6.3</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- generate SEI/DTO classes -->
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${basedir}/target/generated-sources/main/java</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsn-wsdl/bw-2.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+	
+	<dependencies>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-juel</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+
+        <!-- lets use log4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+
+        <!-- testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jvnet.jaxb2.maven2</groupId>
+            <artifactId>maven-jaxb2-plugin</artifactId>
+            <version>0.8.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-annotate</artifactId>
+            <version>0.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics</artifactId>
+            <version>0.6.3</version>
+        </dependency>
+
+    </dependencies>
+
+	
+</project>

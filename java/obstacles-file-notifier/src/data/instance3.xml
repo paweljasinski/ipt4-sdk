@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<UnvalidatedObstacleReport xmlns="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2 file:/Z:/rejap/java/apache-camel-2.11.0/examples/camel-example-file2wsn/src/main/resources/schemas/Obstacles.xsd">
+    <identifier>identifier0</identifier>
+    <obstacle>
+        <objectIdentifier>objectIdentifier0</objectIdentifier>
+        <isDecoyIndicator>false</isDecoyIndicator>
+        <name>name0</name>
+        <typeName>typeName0</typeName>
+        <identifier>identifier1</identifier>
+        <obstructingObjects>
+            <objectIdentifier>objectIdentifier1</objectIdentifier>
+            <isDecoyIndicator>false</isDecoyIndicator>
+            <name>name1</name>
+            <typeName>typeName1</typeName>
+        </obstructingObjects>
+        <obstructingObjects>
+            <objectIdentifier>objectIdentifier2</objectIdentifier>
+            <isDecoyIndicator>false</isDecoyIndicator>
+            <name>name2</name>
+            <typeName>typeName2</typeName>
+        </obstructingObjects>
+    </obstacle>
+    <metadata>
+        <reportingData>
+            <categoryCode>ASS</categoryCode>
+            <reportingDateTime>2006-05-04T18:13:51.0Z</reportingDateTime>
+            <reportingAgent>
+                <objectIdentifier>objectIdentifier3</objectIdentifier>
+                <isDecoyIndicator>false</isDecoyIndicator>
+                <name>name3</name>
+                <typeName>typeName3</typeName>
+                <armCategoryCode>AARMOR</armCategoryCode>
+                <categoryCode>COMBAT</categoryCode>
+                <formalAbbreviatedName>formalAbbreviatedName0</formalAbbreviatedName>
+                <sizeCode>AG</sizeCode>
+                <serviceCode>AIRFRC</serviceCode>
+                <hasCommandFunctionIndicator>false</hasCommandFunctionIndicator>
+                <operationalStatusCode>MOPS</operationalStatusCode>
+            </reportingAgent>
+        </reportingData>
+    </metadata>
+</UnvalidatedObstacleReport>

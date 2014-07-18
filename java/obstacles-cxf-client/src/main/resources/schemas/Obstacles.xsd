@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2"
+	xmlns:tns="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2">
+	<xs:include schemaLocation="MIM-OBSTACLE-1-EntityTypes-20130419.xsd" />
+	<xs:element name="ValidatedeObstacleReport" type="tns:ValidatedObstacleReport" />
+	<xs:element name="UnvalidatedObstacleReport" type="tns:UnvalidatedObstacleReport" />
+</xs:schema>

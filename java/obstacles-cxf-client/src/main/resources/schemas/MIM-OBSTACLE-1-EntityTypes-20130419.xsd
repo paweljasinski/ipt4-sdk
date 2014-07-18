@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:mim="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2" targetNamespace="urn:int:nato:standard:mip:mim-obstacle:1:oo:2.2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<annotation>
+		<documentation xml:lang="en">XML schema defined by the Multilateral Interoperability Programme (MIP) - Editor: Dr. Michael Gerz, michael.gerz@fkie.fraunhofer.de, Fraunhofer FKIE, Germany</documentation>
+	</annotation>
+	<include schemaLocation="MIM-OBSTACLE-1-SimpleTypes-20130419.xsd"/>
+	<include schemaLocation="MIM-OBSTACLE-1-EnumerationTypes-20130419.xsd"/>
+	<complexType name="ObstacleReport" abstract="true">
+		<annotation>
+			<documentation xml:lang="en"/>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::ObstacleReport</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="identifier" type="mim:ObstacleReportIdentifier">
+				<annotation>
+					<documentation xml:lang="en">The identifier of the report.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::ObstacleReport.identifier</SemanticId>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="obstacle" type="mim:Obstacle">
+				<annotation>
+					<documentation xml:lang="en">A thing that blocks one’s way or prevents or hinders progress.</documentation>
+				</annotation>
+			</element>
+			<element name="metadata" type="mim:Metadata">
+				<annotation>
+					<documentation xml:lang="en">Descriptive information about information given in other classes of the model; it does not describe physical characteristics of objects but characteristics of the information available for this object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="UnvalidatedObstacleReport">
+		<annotation>
+			<documentation xml:lang="en"/>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::UnvalidatedObstacleReport</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ObstacleReport">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ValidatedObstacleReport">
+		<annotation>
+			<documentation xml:lang="en"/>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::ValidatedObstacleReport</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ObstacleReport">
+				<sequence>
+					<element name="obstacleReport" type="mim:ObstacleReport" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Affiliation">
+		<annotation>
+			<documentation xml:lang="en">A specification of a country, nationality, ethnic group, functional group, exercise group, or religion to which membership or allegiance may be ascribed.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::Affiliation</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence/>
+	</complexType>
+	<complexType name="AffiliationFunctionalGroup">
+		<annotation>
+			<documentation xml:lang="en">A specification of a functional group characterised by its primary purpose to which membership or allegiance may be ascribed.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::AffiliationFunctionalGroup</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Affiliation">
+				<sequence>
+					<element name="code" type="mim:AffiliationFunctionalGroupCode">
+						<annotation>
+							<documentation xml:lang="en">The category of functional group.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::AffiliationFunctionalGroup.code</SemanticId>
+								<externalSource>MIP</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="name" type="mim:AffiliationFunctionalGroupName">
+						<annotation>
+							<documentation xml:lang="en">The name of the AffiliationFunctionalGroup.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::AffiliationFunctionalGroup.name</SemanticId>
+								<maximumLength>50</maximumLength>
+								<minimumLength>0</minimumLength>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AffiliationGeopolitical">
+		<annotation>
+			<documentation xml:lang="en">A specification of a country or political entity to which membership or allegiance may be ascribed.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::AffiliationGeopolitical</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Affiliation">
+				<sequence>
+					<element name="code" type="mim:AffiliationGeopoliticalCode">
+						<annotation>
+							<documentation xml:lang="en">The identification of the independent first-level geographic-political area and its dependencies, areas of quasi-independence, and areas with special unrecognised sovereignty, including outlying and disputed areas.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Affiliation::AffiliationGeopolitical.code</SemanticId>
+								<externalSource>ISO 3166</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ObjectLocationAssociation">
+		<annotation>
+			<documentation xml:lang="en">An association of an Object with a Location that enables the geographic position of the Object to be specified. The operational meaning of geometry may also be specified.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Association::ObjectLocationAssociation</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="geometricDefinition" type="mim:Location">
+				<annotation>
+					<documentation xml:lang="en">A specification of position and geometry with respect to a specified horizontal frame of reference and a vertical distance measured from a specified datum.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="Symbology">
+		<annotation>
+			<documentation xml:lang="en">The characterization of the Action or Object to support a graphical depiction.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Entity::Symbology</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="symbolAnnotationText" type="mim:SymbologySymbolAnnotationText" minOccurs="0">
+				<annotation>
+					<documentation xml:lang="en">The annotation to be shown attached to the representation of an Action or Object in the form of a graphical depiction in accordance with symbology standard conventions.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Entity::Symbology.symbolAnnotationText</SemanticId>
+						<maximumLength>20</maximumLength>
+						<minimumLength>0</minimumLength>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ExternalInformation">
+		<annotation>
+			<documentation xml:lang="en">An Object describing the main characteristics of external information (with the exception of its actual content).</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::ExternalInformation::ExternalInformation</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Image">
+		<annotation>
+			<documentation xml:lang="en">ExternalInformation that is an imagery product.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::ExternalInformation::Image</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ComposedAntiTankObstacle">
+		<annotation>
+			<documentation xml:lang="en">A MilitaryObstacle (other than Minefield) that is designed or employed to disrupt, fix, turn or block the movement of tanks and that is made of modular, possibly prefabricated, components. Typically, it consists of regular spaced concrete or metal barriers (tetrahedrons or dragon's teeth) laid in single or multiple rows to prevent vehicle movement.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::ComposedAntiTankObstacle</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:MilitaryObstacle">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Facility">
+		<annotation>
+			<documentation xml:lang="en">An Object that is built, installed or established to serve some particular purpose and is identified by the service it provides rather than by its content.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::Facility</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence>
+					<element name="operationalStatusCode" type="mim:FacilityOperationalStatusCode">
+						<annotation>
+							<documentation xml:lang="en">The operational status of a Facility.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::Facility.operationalStatusCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="demolitionStatusCode" type="mim:DemolitionStatusCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The status of a Facility destined for demolition.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::Facility.demolitionStatusCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="operationalStatusQualifierCode" type="mim:FacilityOperationalStatusQualifierCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The qualification of the operational status of a Facility.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::Facility.operationalStatusQualifierCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandMinefield">
+		<annotation>
+			<documentation xml:lang="en">A Minefield that is an area of land containing mines.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::LandMinefield</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:MilitaryObstacle">
+				<sequence>
+					<element name="categoryCode" type="mim:LandMinefieldCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of LandMinefield.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::LandMinefield.categoryCode</SemanticId>
+								<externalSource>MIP</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="depthPlacementCode" type="mim:LandMinefieldDepthPlacementCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The placement of mines with respect to the surface.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::LandMinefield.depthPlacementCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="patternCode" type="mim:LandMinefieldPatternCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The pattern of a LandMinefield.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::LandMinefield.patternCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MilitaryObstacle">
+		<annotation>
+			<documentation xml:lang="en">A Facility designed to stop, impede, or divert movement of amphibious or ground forces.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::MilitaryObstacle</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Facility">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Minefield">
+		<annotation>
+			<documentation xml:lang="en">A MilitaryObstacle that is an area or volume containing mines.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::Minefield</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:MilitaryObstacle">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OtherFacility">
+		<annotation>
+			<documentation xml:lang="en">A Facility for which no further information is given other than its category.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::OtherFacility</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Facility">
+				<sequence>
+					<element name="categoryCode" type="mim:OtherFacilityCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of OtherFacility.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::OtherFacility.categoryCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OtherMilitaryObstacle">
+		<annotation>
+			<documentation xml:lang="en">A MilitaryObstacle for which no further information is given other than its category.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::OtherMilitaryObstacle</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:MilitaryObstacle">
+				<sequence>
+					<element name="categoryCode" type="mim:OtherMilitaryObstacleCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of OtherMilitaryObstacle.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::OtherMilitaryObstacle.categoryCode</SemanticId>
+								<externalSource>MIP</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WireObstacle">
+		<annotation>
+			<documentation xml:lang="en">No definition provided in APP-6A.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Facility::WireObstacle</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:MilitaryObstacle">
+				<sequence>
+					<element name="categoryCode" type="mim:WireObstacleCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of WireObstacle.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Facility::WireObstacle.categoryCode</SemanticId>
+								<externalSource>APP-6A</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Breach" abstract="true">
+		<annotation>
+			<documentation xml:lang="en">A gap in a wall, barrier, or defence.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Breach</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ControlFeature">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ControlFeature">
+		<annotation>
+			<documentation xml:lang="en">A non-tangible Feature of military interest that is administratively specified, may be represented by a geometric figure, and is associated with the conduct of military operations.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::ControlFeature</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Feature">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Feature">
+		<annotation>
+			<documentation xml:lang="en">An Object that encompasses meteorological, geographic, and control features of military significance.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Feature</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeographicFeature">
+		<annotation>
+			<documentation xml:lang="en">A Feature describing terrain characteristics to which military significance is attached.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::GeographicFeature</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Feature">
+				<sequence>
+					<element name="solidSurfaceStatus" type="mim:SolidSurfaceStatus" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">A GeographicFeatureStatus that is a record of condition of a specific solid surface.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="InlandWater">
+		<annotation>
+			<documentation xml:lang="en">A sea, lake, river, etc situated in the interior of a land mass.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::InlandWater</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:GeographicFeature">
+				<sequence>
+					<element name="categoryCode" type="mim:InlandWaterCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of InlandWater.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::InlandWater.categoryCode</SemanticId>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Landform">
+		<annotation>
+			<documentation xml:lang="en">Natural features of the earth's surface.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Landform</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:GeographicFeature">
+				<sequence>
+					<element name="categoryCode" type="mim:LandformCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of Landform.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Landform.categoryCode</SemanticId>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MeteorologicFeature">
+		<annotation>
+			<documentation xml:lang="en">A Feature that describes reported or forecast weather and light conditions.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::MeteorologicFeature</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Feature">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Obstacle">
+		<annotation>
+			<documentation xml:lang="en">A thing that blocks one’s way or prevents or hinders progress.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Obstacle</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ControlFeature">
+				<sequence>
+					<element name="isManMade" type="mim:ObstacleIsManMade" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">Whether the Obstacle is man made (true) or not (false).</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Obstacle.isManMade</SemanticId>
+								<externalSource>STANAG 1059</externalSource>
+								<externalSourceAgency>NATO</externalSourceAgency>
+								<externalSourceVersion>Edition 9 19 February 2004</externalSourceVersion>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="isCBRNThreat" type="mim:ObstacleIsCbrnthreat" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">Whether the Obstacle is considered a CBRN threat (true) or not (false).</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Obstacle.isCBRNThreat</SemanticId>
+								<externalSource>STANAG 1059</externalSource>
+								<externalSourceAgency>NATO</externalSourceAgency>
+								<externalSourceVersion>Edition 9 19 February 2004</externalSourceVersion>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="observationText" type="mim:ObstacleObservationText" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">observationText</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Obstacle.observationText</SemanticId>
+								<externalSource>STANAG 2430</externalSource>
+								<externalSourceAgency>NATO</externalSourceAgency>
+								<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="identifier" type="mim:ObstacleIdentifier">
+						<annotation>
+							<documentation xml:lang="en">The identification of the Obstacle.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Obstacle.identifier</SemanticId>
+								<externalSource>STANAG 2430</externalSource>
+								<externalSourceAgency>NATO</externalSourceAgency>
+								<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="obstructingObjects" type="mim:Object" maxOccurs="unbounded">
+						<annotation>
+							<documentation xml:lang="en">An individually identified object that has military or civilian significance.</documentation>
+						</annotation>
+					</element>
+					<element name="breach" type="mim:Breach" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation xml:lang="en">A gap in a wall, barrier, or defence.</documentation>
+						</annotation>
+					</element>
+					<element name="floatingObjects" type="mim:Object" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation xml:lang="en">An individually identified object that has military or civilian significance.</documentation>
+						</annotation>
+					</element>
+					<element name="obstacle" type="mim:Obstacle" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation xml:lang="en">A thing that blocks one’s way or prevents or hinders progress.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ObstacleGap">
+		<annotation>
+			<documentation xml:lang="en">An area within a minefield or obstacle belt, free of live mines or obstacles, whose width and direction will allow a friendly force to pass through in tactical formation.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::ObstacleGap</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Breach">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ObstacleLane">
+		<annotation>
+			<documentation xml:lang="en">A route through an enemy or friendly obstacle that provides a passing force safe passage. The route may be reduced and proofed as part of a breach operation, or constructed as part of a friendly obstacle. A clear route through an obstacle.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::ObstacleLane</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Breach">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OtherControlFeature">
+		<annotation>
+			<documentation xml:lang="en">A ControlFeature for which no further information is given other than its category.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::OtherControlFeature</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ControlFeature">
+				<sequence>
+					<element name="categoryCode" type="mim:OtherControlFeatureCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of OtherControlFeature.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::OtherControlFeature.categoryCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SolidSurfaceStatus">
+		<annotation>
+			<documentation xml:lang="en">A GeographicFeatureStatus that is a record of condition of a specific solid surface.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::SolidSurfaceStatus</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="damageCode" type="mim:SolidSurfaceStatusDamageCode">
+				<annotation>
+					<documentation xml:lang="en">The damage status of a solid surface.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Feature::SolidSurfaceStatus.damageCode</SemanticId>
+						<externalSource>MIP-NDAG</externalSource>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="demolitionStatusCode" type="mim:DemolitionStatusCode" minOccurs="0">
+				<annotation>
+					<documentation xml:lang="en">The status of an object destined for demolition.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Feature::SolidSurfaceStatus.demolitionStatusCode</SemanticId>
+						<externalSource>ATCCIS</externalSource>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="Visibility">
+		<annotation>
+			<documentation xml:lang="en">A MeteorologicFeature that specifies the distance at which an object illuminated by light in the visual spectrum can be detected.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Visibility</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Feature">
+				<sequence>
+					<element name="rangeDimension" type="mim:VisibilityRangeDimension">
+						<annotation>
+							<documentation xml:lang="en">The distance which can be surveyed using visual observation for a Visibility.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Visibility.rangeDimension</SemanticId>
+								<externalSource>MIP-NDAG</externalSource>
+								<fractionalDigits>3</fractionalDigits>
+								<minimumInclusive>0</minimumInclusive>
+								<unit>metre</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="obscurantCode" type="mim:VisibilityObscurantCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The class of obscurant that governs the Visibility.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Feature::Visibility.obscurantCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="interpretationCode" type="mim:MeteorologicFeatureInterpretationCode">
+						<annotation>
+							<documentation xml:lang="en">The statistical meaning of a specified MeteorologicFeature.</documentation>
+							<appinfo>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbsolutePoint">
+		<annotation>
+			<documentation xml:lang="en">A Point in a geodetic system.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::AbsolutePoint</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Location">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CorridorArea">
+		<annotation>
+			<documentation xml:lang="en">A Surface that is defined by its width and a sequence of points.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::CorridorArea</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Surface">
+				<sequence>
+					<element name="widthDimension" type="mim:CorridorAreaWidthDimension">
+						<annotation>
+							<documentation xml:lang="en">The horizontal distance measured from side to side for a CorridorArea and distributed equally with respect to its centreline.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::CorridorArea.widthDimension</SemanticId>
+								<externalSource>MIP-NDAG</externalSource>
+								<fractionalDigits>3</fractionalDigits>
+								<minimumExclusive>0</minimumExclusive>
+								<unit>metre</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="centerLine" type="mim:Line">
+						<annotation>
+							<documentation xml:lang="en">A Location that is defined by two or more Points connected by one-dimensional line segments in an ordered sequence.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Ellipse">
+		<annotation>
+			<documentation xml:lang="en">A planar Surface in the form of an ellipse.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::Ellipse</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Surface">
+				<sequence>
+					<element name="secondConjugatePoint" type="mim:GeographicPoint">
+						<annotation>
+							<documentation xml:lang="en">An AbsolutePoint that has its position specified with respect to the surface of the World Geodetic System 1984 (WGS 84) ellipsoid.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FanArea">
+		<annotation>
+			<documentation xml:lang="en">A Surface that is in the form of a truncated ring sector, lying between and being bounded by the rays emanating from the centre-point of the ring and having a specified central angle.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::FanArea</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Surface">
+				<sequence>
+					<element name="minimumRangeDimension" type="mim:FanAreaMinimumRangeDimension">
+						<annotation>
+							<documentation xml:lang="en">The distance from the vertex to the inner ring of the ring sector used to specify the FanArea.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::FanArea.minimumRangeDimension</SemanticId>
+								<externalSource>MIP-NDAG</externalSource>
+								<fractionalDigits>3</fractionalDigits>
+								<minimumInclusive>0</minimumInclusive>
+								<unit>metre</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="orientationAngle" type="mim:FanAreaOrientationAngle">
+						<annotation>
+							<documentation xml:lang="en">The rotational measurement clockwise between the line of true north and the left side of the sector for a FanArea.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::FanArea.orientationAngle</SemanticId>
+								<externalSource>MIP-NDAG</externalSource>
+								<fractionalDigits>4</fractionalDigits>
+								<maximumExclusive>360</maximumExclusive>
+								<minimumInclusive>0</minimumInclusive>
+								<unit>degree</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="sectorSizeAngle" type="mim:FanAreaSectorSizeAngle">
+						<annotation>
+							<documentation xml:lang="en">The rotational measurement clockwise between the left and right sides of the sector for a FanArea.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::FanArea.sectorSizeAngle</SemanticId>
+								<externalSource>MIP-NDAG</externalSource>
+								<fractionalDigits>4</fractionalDigits>
+								<maximumExclusive>360</maximumExclusive>
+								<minimumInclusive>0</minimumInclusive>
+								<unit>degree</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="vertex" type="mim:GeographicPoint">
+						<annotation>
+							<documentation xml:lang="en">An AbsolutePoint that has its position specified with respect to the surface of the World Geodetic System 1984 (WGS 84) ellipsoid.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeographicPoint">
+		<annotation>
+			<documentation xml:lang="en">An AbsolutePoint that has its position specified with respect to the surface of the World Geodetic System 1984 (WGS 84) ellipsoid.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::GeographicPoint</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Location">
+				<sequence>
+					<element name="latitudeCoordinate" type="mim:GeographicPointLatitudeCoordinate">
+						<annotation>
+							<documentation xml:lang="en">The angle between the plane of the equator and a line perpendicular to the ellipsoid surface and passing through the GeographicPoint.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::GeographicPoint.latitudeCoordinate</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+								<fractionalDigits>6</fractionalDigits>
+								<maximumInclusive>90</maximumInclusive>
+								<minimumInclusive>-90</minimumInclusive>
+								<unit>degree</unit>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="longitudeCoordinate" type="mim:GeographicPointLongitudeCoordinate">
+						<annotation>
+							<documentation xml:lang="en">The angle between the initial (zero or Greenwich) meridian and the meridian of the GeographicPoint measured in the plane of the Equator.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Location::GeographicPoint.longitudeCoordinate</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+								<fractionalDigits>6</fractionalDigits>
+								<maximumInclusive>180</maximumInclusive>
+								<minimumInclusive>-180</minimumInclusive>
+								<unit>degree</unit>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Line">
+		<annotation>
+			<documentation xml:lang="en">A Location that is defined by two or more Points connected by one-dimensional line segments in an ordered sequence.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::Line</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Location">
+				<sequence>
+					<element name="geographicPoint" type="mim:GeographicPoint" minOccurs="2" maxOccurs="unbounded">
+						<annotation>
+							<documentation xml:lang="en">An AbsolutePoint that has its position specified with respect to the surface of the World Geodetic System 1984 (WGS 84) ellipsoid.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Location">
+		<annotation>
+			<documentation xml:lang="en">A specification of position and geometry with respect to a specified horizontal frame of reference and a vertical distance measured from a specified datum.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::Location</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence/>
+	</complexType>
+	<complexType name="Point">
+		<annotation>
+			<documentation xml:lang="en">A zero dimensional Location.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::Point</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Location">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PolygonArea">
+		<annotation>
+			<documentation xml:lang="en">A Surface that has its boundaries defined by a specific Line.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::PolygonArea</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Surface">
+				<sequence>
+					<element name="boundary" type="mim:Line">
+						<annotation>
+							<documentation xml:lang="en">A Location that is defined by two or more Points connected by one-dimensional line segments in an ordered sequence.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Surface">
+		<annotation>
+			<documentation xml:lang="en">A two-dimensional Location.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Location::Surface</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Location">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Ammunition">
+		<annotation>
+			<documentation xml:lang="en">A ConsumableMateriel that is a complete device charged with explosives, propellants, pyrotechnics, initiating composition, or nuclear, biological, or chemical material for use in military operations.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::Ammunition</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ConsumableMateriel">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ConsumableMateriel">
+		<annotation>
+			<documentation xml:lang="en">A Materiel that is an expendable class of supply.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::ConsumableMateriel</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Materiel">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ImprovisedExplosiveDevice">
+		<annotation>
+			<documentation xml:lang="en">A device placed or fabricated in an improvised manner incorporating destructive, lethal, noxious, pyrotechnic or incendiary chemicals and designed to destroy, incapacitate, harass or distract.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::ImprovisedExplosiveDevice</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ConsumableMateriel">
+				<sequence>
+					<element name="categoryCode" type="mim:ImprovisedExplosiveDeviceCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of ImprovisedExplosiveDevice.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::ImprovisedExplosiveDevice.categoryCode</SemanticId>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandMine">
+		<annotation>
+			<documentation xml:lang="en">An explosive munition designed to be placed under, on or near the ground or other surface area and to be actuated by the presence, proximity, or contact of a person, land vehicle, aircraft, or boat, including landing craft.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::LandMine</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ConsumableMateriel">
+				<sequence>
+					<element name="categoryCode" type="mim:LandMineCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of LandMine.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::LandMine.categoryCode</SemanticId>
+								<externalSource>MIP</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="isLethalIndicator" type="mim:LandMineIsLethalIndicator" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">Whether the LandMine is lethal (true) or not (false).</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::LandMine.isLethalIndicator</SemanticId>
+								<externalSource>STANAG 2430</externalSource>
+								<externalSourceAgency>NATO</externalSourceAgency>
+								<externalSourceVersion>AEngrP-2(B) Edition August 2004</externalSourceVersion>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Materiel">
+		<annotation>
+			<documentation xml:lang="en">An Object that is equipment, apparatus or supplies of military interest without distinction as to its application for administrative or combat purposes.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::Materiel</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence>
+					<element name="operationalStatusCode" type="mim:MaterielOperationalStatusCode">
+						<annotation>
+							<documentation xml:lang="en">The operational status of a Materiel.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::Materiel.operationalStatusCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="demolitionStatusCode" type="mim:DemolitionStatusCode" minOccurs="0">
+						<annotation>
+							<documentation xml:lang="en">The status of a Materiel destined for demolition.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::Materiel.demolitionStatusCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Mine">
+		<annotation>
+			<documentation xml:lang="en">A type of bomb placed on or just below the surface of the ground or in the water that detonates when disturbed by a person, vehicle, or ship.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::Mine</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:ConsumableMateriel">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UnexplodedOrdnance">
+		<annotation>
+			<documentation xml:lang="en">A Materiel that is an explosive ordnance that has been primed, fused, armed, or otherwise prepared for action, and which has been fired, dropped, launched, placed in such a manner, as to constitute a hazard to operation, and remains unexploded either by malfunction or for any other cause. It is commonly abbreviated as UXO.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::UnexplodedOrdnance</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Materiel">
+				<sequence>
+					<element name="exposureCode" type="mim:UnexplodedOrdnanceExposureCode">
+						<annotation>
+							<documentation xml:lang="en">The visual status of an Unexploded Explosive Ordnance.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Materiel::UnexplodedOrdnance.exposureCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Appraisal">
+		<annotation>
+			<documentation xml:lang="en">General assessment of information.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::Appraisal</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence/>
+	</complexType>
+	<complexType name="IntelAppraisal">
+		<annotation>
+			<documentation xml:lang="en">Intelligence assessment of information.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::IntelAppraisal</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Appraisal">
+				<sequence>
+					<element name="accuracyCode" type="mim:IntelAppraisalAccuracyCode">
+						<annotation>
+							<documentation xml:lang="en">For intelligence purpose, the general appraisal of the subject matter in graded terms to indicate the extent or degree to which it has been judged to be free from mistake or error or to conform to truth or some recognised standard value.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::IntelAppraisal.accuracyCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="reliabilityCode" type="mim:IntelAppraisalReliabilityCode">
+						<annotation>
+							<documentation xml:lang="en">For intelligence purpose, the general appraisal of the source in graded terms to indicate the extent to which it has been proven it can be counted on or trusted in to do as expected.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::IntelAppraisal.reliabilityCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Metadata">
+		<annotation>
+			<documentation xml:lang="en">Descriptive information about information given in other classes of the model; it does not describe physical characteristics of objects but characteristics of the information available for this object.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::Metadata</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="reportingData" type="mim:ReportingData">
+				<annotation>
+					<documentation xml:lang="en">The specification of source and timing that applies to reported data.</documentation>
+				</annotation>
+			</element>
+			<element name="reference" type="mim:Reference" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation xml:lang="en">The reference to an external source made for the information characterised by the Metadata.</documentation>
+				</annotation>
+			</element>
+			<element name="appraisal" type="mim:Appraisal" minOccurs="0">
+				<annotation>
+					<documentation xml:lang="en">General assessment of information.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="OperationalAppraisal">
+		<annotation>
+			<documentation xml:lang="en">Operational assessment of information.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::OperationalAppraisal</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Appraisal">
+				<sequence>
+					<element name="credibilityCode" type="mim:OperationalAppraisalCredibilityCode">
+						<annotation>
+							<documentation xml:lang="en">For normal operational use, the degree of trustworthiness of data referenced by a Metadata.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::OperationalAppraisal.credibilityCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Reference">
+		<annotation>
+			<documentation xml:lang="en">The reference to an external source made for the information characterised by the Metadata.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::Reference</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="roleCode" type="mim:ReferenceRoleCode">
+				<annotation>
+					<documentation xml:lang="en">The meaning of the relationship between the information characterised by the Metadata and the ExternalInformation.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::Reference.roleCode</SemanticId>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="image" type="mim:Image">
+				<annotation>
+					<documentation xml:lang="en">ExternalInformation that is an imagery product.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ReportingData">
+		<annotation>
+			<documentation xml:lang="en">The specification of source and timing that applies to reported data.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::ReportingData</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="categoryCode" type="mim:ReportingDataCategoryCode">
+				<annotation>
+					<documentation xml:lang="en">For usual operational purposes, the nature of a ReportingData.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::ReportingData.categoryCode</SemanticId>
+						<externalSource>ATCCIS</externalSource>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="reportingDateTime" type="mim:ReportingDataReportingDateTime">
+				<annotation>
+					<documentation xml:lang="en">The point in time at which the information referenced by the ReportingData is provided.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Metadata::ReportingData.reportingDateTime</SemanticId>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="reportingAgent" type="mim:Unit">
+				<annotation>
+					<documentation xml:lang="en">A military Organisation whose structure is prescribed by competent authority.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="Object">
+		<annotation>
+			<documentation xml:lang="en">An individually identified object that has military or civilian significance.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Object::Object</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+				<element name="objectIdentifier" type="mim:ObjectIdentifier">
+			</element>
+		<element name="isDecoyIndicator" type="mim:ObjectIsDecoyIndicator">
+				<annotation>
+					<documentation xml:lang="en">Whether the Object acts as a decoy (true) or not (false).</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Object::Object.isDecoyIndicator</SemanticId>
+						<externalSource>MIP</externalSource>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="name" type="mim:ObjectName">
+				<annotation>
+					<documentation xml:lang="en">The name of the Object.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Object::Object.name</SemanticId>
+						<maximumLength>100</maximumLength>
+						<minimumLength>0</minimumLength>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="typeName" type="mim:ObjectTypeName">
+				<annotation>
+					<documentation xml:lang="en">The type name of the Object.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Object::Object.typeName</SemanticId>
+						<maximumLength>100</maximumLength>
+						<minimumLength>0</minimumLength>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="symbology" type="mim:Symbology" minOccurs="0">
+				<annotation>
+					<documentation xml:lang="en">The characterization of the Action or Object to support a graphical depiction.</documentation>
+				</annotation>
+			</element>
+			<element name="affiliation" type="mim:Affiliation" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation xml:lang="en">A specification of a country, nationality, ethnic group, functional group, exercise group, or religion to which membership or allegiance may be ascribed.</documentation>
+				</annotation>
+			</element>
+			<element name="geometricDefinition" type="mim:ObjectLocationAssociation" minOccurs="0">
+				<annotation>
+					<documentation xml:lang="en">An association of an Object with a Location that enables the geographic position of the Object to be specified. The operational meaning of geometry may also be specified.</documentation>
+				</annotation>
+			</element>
+			<element name="functionalObjects" type="mim:ObjectFunctionalAssociation" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation xml:lang="en">The subject Object is functionally related to the object Object.</documentation>
+				</annotation>
+			</element>
+			<element name="functionalSubjects" type="mim:ObjectFunctionalAssociation" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation xml:lang="en">The subject Object is functionally related to the object Object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ObjectFunctionalAssociation">
+		<annotation>
+			<documentation xml:lang="en">The subject Object is functionally related to the object Object.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Object::ObjectFunctionalAssociation</SemanticId>
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="categoryCode" type="mim:ObjectFunctionalAssociationCategoryCode">
+				<annotation>
+					<documentation xml:lang="en">The type of functional association.</documentation>
+					<appinfo>
+						<SemanticId>BusinessObjects::Obstacle::Classes::Object::ObjectFunctionalAssociation.categoryCode</SemanticId>
+						<externalSource>MIP</externalSource>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="functionalSubjects" type="mim:Object">
+				<annotation>
+					<documentation xml:lang="en">An individually identified object that has military or civilian significance.</documentation>
+				</annotation>
+			</element>
+			<element name="functionalObjects" type="mim:Object">
+				<annotation>
+					<documentation xml:lang="en">An individually identified object that has military or civilian significance.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GovernmentOrganisation">
+		<annotation>
+			<documentation xml:lang="en">An Organisation that controls and administers public policy either under a national or international mandate.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::GovernmentOrganisation</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MilitaryOrganisation">
+		<annotation>
+			<documentation xml:lang="en">A GovernmentOrganisation that is officially sanctioned and is trained and equipped to exert force.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::MilitaryOrganisation</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Organisation">
+		<annotation>
+			<documentation xml:lang="en">An Object that is an administrative or functional structure.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Organisation</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Unit">
+		<annotation>
+			<documentation xml:lang="en">A military Organisation whose structure is prescribed by competent authority.</documentation>
+			<appinfo>
+				<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Unit</SemanticId>
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="mim:Object">
+				<sequence>
+					<element name="armCategoryCode" type="mim:UnitArmCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The military branch of the Unit.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Unit.armCategoryCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="categoryCode" type="mim:UnitCategoryCode">
+						<annotation>
+							<documentation xml:lang="en">The class of Unit.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Unit.categoryCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="formalAbbreviatedName" type="mim:UnitFormalAbbreviatedName">
+						<annotation>
+							<documentation xml:lang="en">The common formal abbreviation used to designate a Unit.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Unit.formalAbbreviatedName</SemanticId>
+								<maximumLength>100</maximumLength>
+								<minimumLength>0</minimumLength>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="sizeCode" type="mim:EchelonSizeCode">
+						<annotation>
+							<documentation xml:lang="en">The relative size of the commonly accepted configuration of military formations.</documentation>
+							<appinfo>
+								<SemanticId>BusinessObjects::Obstacle::Classes::Organisation::Unit.sizeCode</SemanticId>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="serviceCode" type="mim:MilitaryOrganisationServiceCode">
+						<annotation>
+							<documentation xml:lang="en">The military, paramilitary, irregular force, force or group, capable of functioning as an offensive or defensive combat or support organisation.</documentation>
+							<appinfo>
+								<externalSource>ADatP-3 FFIRN 1107 'Armed Service'</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="hasCommandFunctionIndicator" type="mim:UnitHasCommandFunctionIndicator">
+						<annotation>
+							<documentation xml:lang="en">Whether the Organisation has a command function (true) or not (false).</documentation>
+							<appinfo>
+								<externalSource>MIP</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="operationalStatusCode" type="mim:OrganisationOperationalStatusCode">
+						<annotation>
+							<documentation xml:lang="en">The operational status of an Organisation.</documentation>
+							<appinfo>
+								<externalSource>ATCCIS</externalSource>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

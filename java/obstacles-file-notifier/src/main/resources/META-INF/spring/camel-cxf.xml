@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://camel.apache.org/schema/cxf
+http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+
+	<cxf:cxfEndpoint id="notify"
+		address="http://localhost:9000/wsn/NotificationBroker" serviceClass="org.oasis_open.docs.wsn.bw_2.NotificationConsumer"
+		wsdlURL="wsn-wsdl/bw-2.wsdl">
+		<cxf:properties>
+			<entry key="jaxb.additionalContextClasses">
+				<bean class="ch.cheafcso.mip.ipt4.obstacle_file_notifier.ClassArrayFactoryBean">
+					<property name="classNames">
+						<list>
+							<value>_int.nato.standard.mip.mim_obstacle._1.oo._2.ObjectFactory</value>
+						</list>
+					</property>
+				</bean>
+			</entry>
+		</cxf:properties>
+	</cxf:cxfEndpoint>
+
+</beans>

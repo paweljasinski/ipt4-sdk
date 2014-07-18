@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ch.cheafcso.mip.ipt4</groupId>
+	<artifactId>obstacles-parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Obstacle Capability Package</name>
+	<description>Reference Implementation of Obstacle Capability Package</description>
+	<url>https://github.com/paweljasinski/ipt4-sdk</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<modules>
+		<module>obstacles-cxf-client</module>
+    <module>obstacles-file-subscriber</module>
+		<module>obstacles-file-notifier</module>
+	</modules>
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
